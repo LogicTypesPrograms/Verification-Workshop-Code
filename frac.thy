@@ -1,6 +1,6 @@
 theory frac
 imports AutoCorres
-  GCD
+  GCD "~~/src/HOL/Number_Theory/Primes" 
 begin
 
 install_C_file "frac.c"
@@ -63,6 +63,35 @@ begin
     "\<lbrace> %s. INT_MIN < a \<and> a \<le> INT_MAX  \<rbrace> abs' a  \<lbrace> %r s. r = abs a  \<rbrace>!"
     unfolding abs'_def 
     apply wp by (auto simp add: INT_MAX_def INT_MIN_def)
+
+
+  section "the gcd function"
+
+  thm gcd'_def
+
+  text " a suggested correctness property of gcd"
+  lemma gcd_wp: (* [wp]: *)
+    "\<lbrace> P (gcd a b) \<rbrace> gcd' a b \<lbrace> P \<rbrace>!" sorry
+
+  
+  section "the frac function"
+
+  thm frac'_def
+
+  term frac_t_C (* a constructor for the frac structure, but it takes two '32 signed word' not ints! *)
+ 
+  lemma frac_wp: 
+    "\<lbrace> %s. True \<rbrace> frac' a b \<lbrace> %rv s. (\<exists>x y.  y>0 \<and> gcd x y = 1 \<and> a*y=b*x \<and> rv = frac_t_C (of_int x) (of_int y) ) \<rbrace>!" sorry
+
+  
+
+  section "the add function"
+
+
+  thm add'_def
+
+  (* TODO: formulate correctness properties of add *)
+
 
 
 
