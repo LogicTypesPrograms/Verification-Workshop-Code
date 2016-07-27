@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 
 typedef struct frac_t
 {
@@ -16,17 +16,24 @@ frac_t add(frac_t a, frac_t b);
 //! greatest common divisor
 int gcd(int a, int b);
 
+int abs(int a) {
+  if (a<0)
+    return -a;
+  return a;
+}
+
+
 // ---
 
-int main(/*int argc; char** argv*/)
-{
-  const frac_t a = frac(1, 2);
-  const frac_t b = frac(1, 3);
-  const frac_t ab = add(a, b);
-  printf("%d/%d + %d/%d = %d/%d\n", a.num, a.div,  b.num, b.div,  ab.num, ab.div);
-
-  return 0;
-}
+//int main(/*int argc; char** argv*/)
+//{
+//  const frac_t a = frac(1, 2);
+//  const frac_t b = frac(1, 3);
+//  const frac_t ab = add(a, b);
+//  printf("%d/%d + %d/%d = %d/%d\n", a.num, a.div,  b.num, b.div,  ab.num, ab.div);
+//
+//  return 0;
+//}
 
 // ---
 
@@ -80,4 +87,3 @@ int gcd(int a, int b)
 
   return a;
 }
-
